@@ -1,6 +1,6 @@
 /*
  *  File 	   : Port_Lcfg.h
- *  Created on : April 5, 2020
+ *  Created on : Sep 2, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
  */
