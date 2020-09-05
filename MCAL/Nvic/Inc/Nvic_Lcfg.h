@@ -1,9 +1,3 @@
-/*
- *  File 	   : Nvic_Lcfg.h
- *  Created on : Sep 4, 2020
- *  Author	   : Mazen Shouman
- *  Version    : 1.0
- */
 
 #ifndef NVIC_INC_NVIC_LCFG_H_
 #define NVIC_INC_NVIC_LCFG_H_
