@@ -1,6 +1,6 @@
 /*
- *  File 	   : Port.c
- *  Created on : Sep 2, 2020
+ *  File 	   : Nvic.c
+ *  Created on : Sep 4, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
  */
@@ -36,6 +36,7 @@
  *  Param    : IN     : Name / GroupNumber                                                                                            *
  *                      Type / Nvic_PriorityValue_t                                                                                   *
  *                      Desc / takes predefined macro for Group number                                                                *
+ *                                                                                                                                    *
  *                      Name / SubgroupNumber                                                                                         *
  *                      Type / Nvic_PriorityValue_t                                                                                   *
  *                      Desc / takes predefined macro for Subgroup number                                                             *
@@ -131,7 +132,7 @@ Nvic_ErrorStatus_t Nvic_Init(void)
 	else
 	{
 		/*loop on the configuration array*/
-		for(local_counter=0;local_counter<NUMBER_OF_CONFIGURED_PERIPHERALS;++local_counter)
+		for(local_counter=0;local_counter<NVIC_NUMBER_OF_CONFIGURED_PERIPHERALS;++local_counter)
 		{
 			/*get the acutal peripheral bit in the register*/
 			local_PeripheralOffset=gastr_NvicConfigArr[local_counter].PeripheralId%NVIC_NUMBER_PERIPHERAL_REG;
@@ -369,9 +370,11 @@ Nvic_InterruptActiveStatus_t Nvic_ReadActiveFlag(Nvic_PeripheralId_t PeripheralI
  *  Param    : IN     : Name / PeripheralID                                                                                           *
  *                      Type / Nvic_PeripheralId_t                                                                                    *
  *                      Desc / takes predefined macro for peripheral id                                                               *
+ *                                                                                                                                    *
  *                      Name / GroupNumber                                                                                            *
  *                      Type / Nvic_PriorityValue_t                                                                                   *
  *                      Desc / takes predefined macro for Group number                                                                *
+ *                                                                                                                                    *
  *                      Name / SubgroupNumber                                                                                         *
  *                      Type / Nvic_PriorityValue_t                                                                                   *
  *                      Desc / takes predefined macro for Subgroup number                                                             *
@@ -415,3 +418,4 @@ Nvic_ErrorStatus_t Nvic_SetInterruptSoftwarePriority(Nvic_PeripheralId_t Periphe
 
 	return returnValue;
 }
+

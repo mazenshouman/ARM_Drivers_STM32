@@ -1,30 +1,31 @@
 /*
- *  File 	   : Nvic_Lcfg.h
- *  Created on : Sep 4, 2020
+ *  File 	   : Exti_Lcfg.h
+ *  Created on : Sep 10, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
  */
+#ifndef EXTI_EXTI_LCFG_H_
+#define EXTI_EXTI_LCFG_H_
 
-#ifndef NVIC_INC_NVIC_LCFG_H_
-#define NVIC_INC_NVIC_LCFG_H_
 
 /************************************************************************
  *                      Configuration Structure                         *
  ***********************************************************************/
 typedef struct{
-	Nvic_PeripheralId_t            PeripheralId;
-	Nvic_PriorityValue_t           PriorityGroupNumber;
-	Nvic_PriorityValue_t           PrioritySubgroupNumber;
-}Nvic_ConfigType;
+	Exti_LineId_t                  LineId;
+	Exti_Mode_t                    Mode;
+	Exti_Trigger_t                 Trigger;
+	Exti_InitialState_t            InitialState;
+}Exti_ConfigType;
 
 /************************************************************************
  *                      Externed Structure instance                     *
  ***********************************************************************/
 
-extern Nvic_ConfigType gastr_NvicConfigArr[];
+extern Exti_ConfigType gastr_ExtiConfigArr[];
 
 
 /************************************************************************/
 
 
-#endif /* NVIC_INC_NVIC_LCFG_H_ */
+#endif /* EXTI_EXTI_LCFG_H_ */

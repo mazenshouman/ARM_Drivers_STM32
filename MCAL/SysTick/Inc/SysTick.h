@@ -110,9 +110,7 @@ void SysTick_SetIntervalPeriodicInTicks(SysTick_LoadValue_t NumberOfTicks);
 
 /**************************************************************************************************************************************
  *  Function : SysTick_StopInterval                                                                                                   *
- *  Param    : IN     : Name / NumberOfTicks                                                                                          *
- *                      Type / SysTick_LoadValue_t                                                                                    *
- *                      Desc / value to be set to the load register max 24 bit                                                        *
+ *  Param    : IN     : Noe                                                                                                           *
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
@@ -124,7 +122,7 @@ void SysTick_SetIntervalPeriodicInTicks(SysTick_LoadValue_t NumberOfTicks);
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-void SysTick_StopInterval(SysTick_LoadValue_t NumberOfTicks);
+void SysTick_StopInterval(void);
 
 /**************************************************************************************************************************************
  *  Function : SytTick_GetElapsedTimeInTicks                                                                                          *
@@ -197,12 +195,6 @@ SysTick_ErrorStatus_t SysTick_SetCallback(SysTick_PtrToFunction_t PtrToFunction)
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 void SysTick_Deinit(void);
-
-//void MSTK_voidSetIntervalSingleInTicks ( u32 Copy_u32Ticks, void (*Copy_ptr)(void) );
-//void MSTK_voidSetIntervalPeriodicInTicks( u32 Copy_u32Ticks, void (*Copy_ptr)(void) );
-//void MSTK_voidStopInterval(void);
-//u32  MSTK_u32GetElapsedTimeInTicks(void);
-//u32  MSTK_u32GetRemainingTimeInTicks(void);
 
 
 

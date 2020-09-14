@@ -213,9 +213,7 @@ void SysTick_SetIntervalPeriodicInTicks(SysTick_LoadValue_t NumberOfTicks)
 
 /**************************************************************************************************************************************
  *  Function : SysTick_StopInterval                                                                                                   *
- *  Param    : IN     : Name / NumberOfTicks                                                                                          *
- *                      Type / SysTick_LoadValue_t                                                                                    *
- *                      Desc / value to be set to the load register max 24 bit                                                        *
+ *  Param    : IN     : Noe                                                                                                           *
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
@@ -227,7 +225,7 @@ void SysTick_SetIntervalPeriodicInTicks(SysTick_LoadValue_t NumberOfTicks)
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-void SysTick_StopInterval(SysTick_LoadValue_t NumberOfTicks)
+void SysTick_StopInterval(void)
 {
 	/*disable peripheral to ensure that nothing will interrupt this configuration*/
 	CLEAR_BIT(SYSTICK_BASE_ADDRESS->CTRL,SYSTICK_CTRL_ENABLE);
@@ -330,7 +328,7 @@ void SysTick_Deinit(void)
 	/*clear load and value register*/
 	SYSTICK_BASE_ADDRESS->LOAD=0;
 
-	/*this clear the val register and cleart the flag*/
+	/*this clear the val register and clear the flag*/
 	SYSTICK_BASE_ADDRESS->VAL=0;
 
 	/*disable the peripheral*/
@@ -342,7 +340,8 @@ void SysTick_Deinit(void)
 	SysTick_PtrToFunction=NULL;
 }
 
-/**************************************************************************************************
+/**************************************************************************************************/
+
 /*****************************************
  *                ISR                    *
  ****************************************/
@@ -365,7 +364,7 @@ void SysTick_Handler(void)
 		SYSTICK_BASE_ADDRESS->VAL=0;
 	}
 
-	/*execute call back fucntion if it was set*/
+	/*execute call back function if it was set*/
 	if(SysTick_PtrToFunction!=NULL)
 	{
 		SysTick_PtrToFunction();

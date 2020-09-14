@@ -20,7 +20,7 @@
  * */
 
 typedef uint8 Nvic_NumberOfConfiguredPeripheralsType;
-#define NUMBER_OF_CONFIGURED_PERIPHERALS            (Nvic_NumberOfConfiguredPeripheralsType)1
+#define NVIC_NUMBER_OF_CONFIGURED_PERIPHERALS            (Nvic_NumberOfConfiguredPeripheralsType)1
 
 /*
  * Priority Grouping Configuration taken from the SCB (both must match on the value)

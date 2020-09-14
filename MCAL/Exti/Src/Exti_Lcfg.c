@@ -8,22 +8,23 @@
 /************************************************************************
  *                              Includes                                *
  ************************************************************************/
-#include "Std_Types.h"
-#include "Nvic_Cfg.h"
-#include "Nvic.h"
-#include "Nvic_Lcfg.h"
 
+#include "Std_Types.h"
+#include "Exti_Cfg.h"
+#include "Exti.h"
+#include "Exti_Lcfg.h"
 
 
 /************************************************************************
  *      creating instance and initializing configuration structure      *
  ************************************************************************/
-Nvic_ConfigType gastr_NvicConfigArr[NVIC_NUMBER_OF_CONFIGURED_PERIPHERALS]=
-/*            Peipheral ID                             PriorityGroupNumber                  PrioritySubgroupNumber                 */
+
+Exti_ConfigType gastr_ExtiConfigArr[EXTI_NUMBER_OF_CONFIGURED_LINES]=
+/*            Line ID                             Mode                               Trigger                              Initial State*/
 {
- {          NVIC_EXTI0         ,                     NVIC_PRIORITY_GROUP_2          ,       NVIC_PRIORITY_SUBGROUP_1},
+ {          EXTI_LINE0           ,          EXTI_MODE_INTERRUPT      ,        EXTI_TRIGGER_RISING_EDGE           ,             EXTI_ENABLED},
 };
 
 
-/****************************************************************************/
 
+/****************************************************************************/

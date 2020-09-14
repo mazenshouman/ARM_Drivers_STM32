@@ -12,7 +12,6 @@
  *                              Includes                                *
  ************************************************************************/
 
-#include "Port_Cfg.h"
 
 /************************************************************************
  *                         Macros And Types                             *
@@ -82,7 +81,7 @@ typedef uint8 Nvic_PeripheralId_t;
 #define NVIC_TIM7                                    (Nvic_PeripheralId_t)55
 #define NVIC_DMA2_Channel1                           (Nvic_PeripheralId_t)56
 #define NVIC_DMA2_Channel2                           (Nvic_PeripheralId_t)57
-#define NVIC_DMA2_Channel3                           (Nvic_PeripheralId_t)ö58
+#define NVIC_DMA2_Channel3                           (Nvic_PeripheralId_t)58
 #define NVIC_DMA2_Channel4_5                         (Nvic_PeripheralId_t)59
 
 /**************************
@@ -264,9 +263,11 @@ Nvic_InterruptActiveStatus_t Nvic_ReadActiveFlag(Nvic_PeripheralId_t PeripheralI
  *  Param    : IN     : Name / PeripheralID                                                                                           *
  *                      Type / Nvic_PeripheralId_t                                                                                    *
  *                      Desc / takes predefined macro for peripheral id                                                               *
+ *                                                                                                                                    *
  *                      Name / GroupNumber                                                                                            *
  *                      Type / Nvic_PriorityValue_t                                                                                   *
  *                      Desc / takes predefined macro for Group number                                                                *
+ *                                                                                                                                    *
  *                      Name / SubgroupNumber                                                                                         *
  *                      Type / Nvic_PriorityValue_t                                                                                   *
  *                      Desc / takes predefined macro for Subgroup number                                                             *
