@@ -20,13 +20,6 @@ typedef uint8 Led_CurrentDirectionType;
 #define LED_SOURCING                                (Led_CurrentDirectionType)0
 #define LED_SINKING                                 (Led_CurrentDirectionType)1
 
-/*
- * this type is used to set initial state of the led at the start of the system
- * */
-typedef uint8 Led_InitialStateType;
-#define LED_OFF                                     (Led_InitialStateType)0
-#define LED_ON                                      (Led_InitialStateType)1
-
 /***********************************************************************************/
 
 /************************************************************************
@@ -36,7 +29,7 @@ typedef uint8 Led_InitialStateType;
 typedef struct{
     Led_ChannelType                   Led_Channel;
     Led_CurrentDirectionType          Led_CurrentDirection;
-    Led_InitialStateType              Led_InitialState;
+    Led_StateType                     Led_InitialState;
 }Led_ConfigType;
 
 /************************************************************************

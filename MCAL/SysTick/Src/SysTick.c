@@ -348,9 +348,11 @@ void SysTick_Deinit(void)
 
 void SysTick_Handler(void)
 {
-	/*if not cleared it will overflow eventually*/
+	/*if not cleared it will overflow eventually
+	 * this counter is used with setting time periods*/
+#if 0
 	SysTick_Counter++;
-
+#endif
 	if(SysTick_IntervalType==SYSTICK_INTERVAL_SINGLE)
 	{
 		/*disable peripheral*/

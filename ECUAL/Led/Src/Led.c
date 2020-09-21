@@ -1,8 +1,8 @@
 /*
  *  File 	   : Led.c
- *  Created on : April 8, 2020
+ *  Created on : Sep 15, 2020
  *  Author	   : Mazen Shouman
- *  Version    : 1.0
+ *  Version    : 2.0
  */
 
 
@@ -145,7 +145,7 @@ Led_ErrorStateType Led_Off(Led_IdType Led_Id)
 }
 
 /**************************************************************************************************************************************
- *  Function : Led_Toggle                                                                                                                 *
+ *  Function : Led_Toggle                                                                                                             *
  *  Param    : IN     : Name / Led_Id                                                                                                 *
  *                      Type / Led_IdType                                                                                             *
  *                      Desc / predefine macro for led id                                                                             *
@@ -155,7 +155,7 @@ Led_ErrorStateType Led_Off(Led_IdType Led_Id)
  *  Return   : Led_ErrorStateType                                                                                                     *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *  Desc     : This function toggle led depending on its current direction                                                          *
+ *  Desc     : This function toggle led depending on its current direction                                                            *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *
@@ -170,6 +170,72 @@ Led_ErrorStateType Led_Toggle(Led_IdType Led_Id)
 	else
 	{
 		Led_ToggleChannel(gastr_LedConfigArr[Led_Id].Led_Channel);
+	}
+	return returnStatus;
+}
+
+/**************************************************************************************************************************************
+ *  Function : Led_SetState                                                                                                           *
+ *  Param    : IN     : Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *                                                                                                                                    *
+ *                      Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *  Return   : Led_ErrorStateType                                                                                                     *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function set state for led                                                                                        *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
+
+Led_ErrorStateType Led_SetState(Led_IdType Led_Id , Led_StateType State)
+{
+	Led_ErrorStateType returnStatus=LED_E_OK;
+
+	if(Led_Id >= LED_NUMBER_OF_CONFIGURED_LEDS){
+		returnStatus=LED_ID_OUTOFRANGE;
+	}
+	else
+	{
+		switch(State)
+		{
+			case LED_OFF:
+				switch(gastr_LedConfigArr[Led_Id].Led_CurrentDirection){
+					case LED_SOURCING:
+						Led_WriteChannel(gastr_LedConfigArr[Led_Id].Led_Channel , STD_LOW);
+						break;
+					case LED_SINKING:
+						Led_WriteChannel(gastr_LedConfigArr[Led_Id].Led_Channel , STD_HIGH);
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case LED_ON:
+				switch(gastr_LedConfigArr[Led_Id].Led_CurrentDirection){
+					case LED_SOURCING:
+						Led_WriteChannel(gastr_LedConfigArr[Led_Id].Led_Channel , STD_HIGH);
+						break;
+					case LED_SINKING:
+						Led_WriteChannel(gastr_LedConfigArr[Led_Id].Led_Channel , STD_LOW);
+						break;
+					default:
+						break;
+				}
+				break;
+
+			default:
+				returnStatus=LED_E_NOT_OK;
+				break;
+
+		}
 	}
 	return returnStatus;
 }

@@ -1,8 +1,8 @@
 /*
  *  File 	   : Led.h
- *  Created on : April 8, 2020
+ *  Created on : Sep 15, 2020
  *  Author	   : Mazen Shouman
- *  Version    : 1.0
+ *  Version    : 2.0
  */
 
 #ifndef LED_INC_LED_H_
@@ -55,6 +55,15 @@ typedef uint8 Led_IdType;
 #define LED_ID38                                    (Led_IdType)38
 #define LED_ID39                                    (Led_IdType)39
 #define LED_ID40                                    (Led_IdType)40
+
+
+/*
+ * this type is used to set state of the led at the start of the system or in the Led_SetState function
+ * */
+typedef uint8 Led_StateType;
+#define LED_OFF                                    (Led_StateType)0
+#define LED_ON                                     (Led_StateType)1
+
 
 typedef uint8 Led_ErrorStateType;
 #define LED_E_OK                                    (Led_ErrorStateType)0
@@ -147,6 +156,27 @@ Led_ErrorStateType Led_Off(Led_IdType Led_Id);
 Led_ErrorStateType Led_Toggle(Led_IdType Led_Id);
 
 
+/**************************************************************************************************************************************
+ *  Function : Led_SetState                                                                                                           *
+ *  Param    : IN     : Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *                                                                                                                                    *
+ *                      Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *  Return   : Led_ErrorStateType                                                                                                     *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function set state for led                                                                                        *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
+
+Led_ErrorStateType Led_SetState(Led_IdType Led_Id , Led_StateType State);
 /**************************************************************************************************************************************/
 
 #endif /* LED_INC_LED_H_ */

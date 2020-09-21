@@ -29,11 +29,11 @@ int main(){
 	Rcc_InitPeripheralsClock();
 	Port_SetPinDirection(PORT_CHANNEL_C13,PORT_PIN_OUT_2_MHZ_PUSH_PULL);
 	Scb_Init();
-	Exti_SetCallback(EXTI_LINE0,TurnLedOff);
+//	Exti_SetCallback(EXTI_LINE0,TurnLedOff);
 	SysTick_Init();
 	SysTick_SetCallback(ToggleLed);
 	SysTick_SetIntervalPeriodicInTicks(1000000);
-	Nvic_Init();
+//	Nvic_Init();
 //	SysTick_SetBusyWaitInTicks(1000000);
 //	Nvic_SetPending(NVIC_EXTI0);
 	while(1)

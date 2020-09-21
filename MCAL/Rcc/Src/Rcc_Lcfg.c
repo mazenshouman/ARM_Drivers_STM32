@@ -25,7 +25,5 @@ Rcc_ClockConfigStr_t gstr_RccClockConfig=
 
 Rcc_PeripheralSel_t  ga_RccPeripheralConfig[RCC_NUMBER_OF_PERIPHERALS]=
 {
-		RCC_IOPA,
-		RCC_IOPB,
 		RCC_IOPC,
 };
