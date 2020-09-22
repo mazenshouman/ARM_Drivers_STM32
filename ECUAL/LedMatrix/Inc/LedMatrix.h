@@ -1,8 +1,8 @@
 /*
  *  File 	   : LedMatrix.h
- *  Created on : Sep 20, 2020
+ *  Created on : Sep 21, 2020
  *  Author	   : Mazen Shouman
- *  Version    : 1.0
+ *  Version    : 2.0
  */
 
 #ifndef LEDMATRIX_INC_LEDMATRIX_H_
@@ -43,7 +43,12 @@ typedef uint8 LedMatrix_CurrentState_t;
 /*need modification to add array of characters*/
 typedef uint8 LedMatrix_dataIndex_t;
 
+typedef sint8 LedMatrix_data_t;
+
+
 typedef uint32 LedMatrix_timeInMs_t;
+
+typedef uint8 LedMatrix_StringSize_t;
 /************************************************************************/
 
 /************************************************************************
@@ -124,28 +129,62 @@ LedMatrix_ErrorState_t LedMatrix_DisplayCharSynch(LedMatrix_Id_t  LedMatrix_Id ,
 
 LedMatrix_ErrorState_t LedMatrix_DisplayTextSynch(LedMatrix_Id_t  LedMatrix_Id , LedMatrix_dataIndex_t dataIndex , LedMatrix_timeInMs_t ShiftingTimeInMs);
 
+
 /**************************************************************************************************************************************
- *  Function : LedMatrix_DisplayCharAsynch                                                                                            *
+ *  Function : LedMatrix_DisplayStringSynch                                                                                           *
  *  Param    : IN     : Name / LedMatrix_Id                                                                                           *
  *                      Type / LedMatrix_Id_t                                                                                         *
  *                      Desc / predefine macro for LedMatrix id                                                                       *
  *                                                                                                                                    *
- *             Output : Name / data                                                                                                   *
- *                      Type / LedMatrix_data_t                                                                                       *
- *                      Desc / takes the character wanted to be dispalyed on led matrix                                               *
+ *                      Name / String                                                                                                 *
+ *                      Type / LedMatrix_data_t*                                                                                      *
+ *                      Desc / takes string from the user                                                                             *
  *                                                                                                                                    *
- *  Return   : LedMatrix_CurrentState_t                                                                                               *
+ *                      Name / StringLength                                                                                           *
+ *                      Type / const LedMatrix_StringSize_t                                                                           *
+ *                      Desc / takes the size of the given string without Null Character                                              *
+ *                                                                                                                                    *
+ *                      Name / ShiftingTimeInMs                                                                                       *
+ *                      Type / LedMatrix_timeInMs_t                                                                                   *
+ *                      Desc / takes the time which the character will be shifted after , and time must be higher than                *
+ *                              character display time                                                                                *
+ *                                                                                                                                    *
+ *  Return   : LedMatrix_ErrorState_t                                                                                                 *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *  Desc     : This function used to display character on the led matrix by displaying column by column using the                     *
- *             predefine rate in the cfg file by using state machine so that it won't block the system and user must sit it           *
- *             as call bakck funtion in the timer                                                                                     *
+ *  Desc     : This function used to display string of ascii values and display it on the led matrix with the given shifting          *
+ *             timing                                                                                                                 *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-LedMatrix_CurrentState_t LedMatrix_DisplayCharAsynch(LedMatrix_Id_t  LedMatrix_Id , LedMatrix_dataIndex_t data);
+LedMatrix_ErrorState_t LedMatrix_DisplayStringSynch(LedMatrix_Id_t  LedMatrix_Id , const LedMatrix_data_t* String ,LedMatrix_StringSize_t StringLength,  LedMatrix_timeInMs_t ShiftingTimeInMs)
+
+
+///**************************************************************************************************************************************
+// *  Function : LedMatrix_DisplayCharAsynch                                                                                            *
+// *  Param    : IN     : Name / LedMatrix_Id                                                                                           *
+// *                      Type / LedMatrix_Id_t                                                                                         *
+// *                      Desc / predefine macro for LedMatrix id                                                                       *
+// *                                                                                                                                    *
+// *             Output : Name / data                                                                                                   *
+// *                      Type / LedMatrix_data_t                                                                                       *
+// *                      Desc / takes the character wanted to be dispalyed on led matrix                                               *
+// *                                                                                                                                    *
+// *  Return   : LedMatrix_CurrentState_t                                                                                               *
+// *                                                                                                                                    *
+// *                                                                                                                                    *
+// *  Desc     : This function used to display character on the led matrix by displaying column by column using the                     *
+// *             predefine rate in the cfg file by using state machine so that it won't block the system and user must sit it           *
+// *             as call bakck funtion in the timer                                                                                     *
+// *                                                                                                                                    *
+// *                                                                                                                                    *
+// *                                                                                                                                    *
+// *************************************************************************************************************************************/
+//
+//LedMatrix_CurrentState_t LedMatrix_DisplayCharAsynch(LedMatrix_Id_t  LedMatrix_Id , LedMatrix_dataIndex_t data);
+
 
 
 #endif /* LEDMATRIX_INC_LEDMATRIX_H_ */
