@@ -22,6 +22,8 @@ Port_ConfigType gastr_PortConfigArr[NUMBER_OF_CONFIGURED_PINS]=
 /*            channel ID                             Direction                 */
 {
  {          PORT_CHANNEL_C13         ,       PORT_PIN_OUT_2_MHZ_PUSH_PULL       },
+ {          PORT_CHANNEL_A9          ,       PORT_PIN_OUT_10_MHZ_AF_OPEN_DRAIN  },
+ {          PORT_CHANNEL_A10         ,       PORT_PIN_IN_FLAOTING               },
 };
 
 

@@ -159,7 +159,7 @@ LedMatrix_ErrorState_t LedMatrix_DisplayTextSynch(LedMatrix_Id_t  LedMatrix_Id ,
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-LedMatrix_ErrorState_t LedMatrix_DisplayStringSynch(LedMatrix_Id_t  LedMatrix_Id , const LedMatrix_data_t* String ,LedMatrix_StringSize_t StringLength,  LedMatrix_timeInMs_t ShiftingTimeInMs)
+LedMatrix_ErrorState_t LedMatrix_DisplayStringSynch(LedMatrix_Id_t  LedMatrix_Id , const LedMatrix_data_t* String ,LedMatrix_StringSize_t StringLength,  LedMatrix_timeInMs_t ShiftingTimeInMs);
 
 
 ///**************************************************************************************************************************************

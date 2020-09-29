@@ -10,6 +10,7 @@
  *                              Includes                                *
  ************************************************************************/
 #include "Std_Types.h"
+#include "Rcc_Cfg.h"
 #include "Rcc.h"
 #include "Rcc_Lcfg.h"
 
@@ -26,4 +27,6 @@ Rcc_ClockConfigStr_t gstr_RccClockConfig=
 Rcc_PeripheralSel_t  ga_RccPeripheralConfig[RCC_NUMBER_OF_PERIPHERALS]=
 {
 		RCC_IOPC,
+		RCC_USART1,
+		RCC_IOPA,
 };

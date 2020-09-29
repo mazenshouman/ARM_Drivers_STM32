@@ -28,7 +28,7 @@
  * */
 
 typedef uint8 Port_NumberOfConfiguredPinsType;
-#define NUMBER_OF_CONFIGURED_PINS      (Port_NumberOfConfiguredPinsType)1
+#define NUMBER_OF_CONFIGURED_PINS      (Port_NumberOfConfiguredPinsType)3
 /*21 for app 6*/
 
 /****************************************************************************/

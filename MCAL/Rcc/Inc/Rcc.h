@@ -11,170 +11,13 @@
 /************************************************************************
  *                           File Includes                               *
  ************************************************************************/
-#include "Rcc_MemMap.h"
-#include "Rcc_Cfg.h"
+
 /************************************************************************
  *                           Error macros                               *
  ************************************************************************/
 typedef uint8 Rcc_ErrorStatus_t;
 #define RCC_E_NOT_OK                                        (Rcc_ErrorStatus_t)1
 #define RCC_E_OK                                            (Rcc_ErrorStatus_t)0
-/************************************************************************
- *                         Macros And Types                             *
- ************************************************************************/
-
-/****************************************
- *           HSI Status Macro           *
- ***************************************/
-typedef uint32 Rcc_HsiStatus_t;
-#define RCC_HSI_DISABLED                     (Rcc_HsiStatus_t)0
-#define RCC_HSI_ENABLED                      (Rcc_HsiStatus_t)1
-
-/****************************************
- *           HSI TRIM Macro             *
- ***************************************/
-/*Note:by adding or decreasing the default value by on the HSI clock trimmed by 40Khz*/
-typedef uint32 Rcc_HsiTrimValue_t;
-#define RCC_HSI_TRIM_DEFALUT_VALUE           (Rcc_HsiTrimValue_t)16
-
-/****************************************
- *           HSE Status Macro           *
- ***************************************/
-typedef uint32 Rcc_HseStatus_t;
-#define RCC_HSE_DISABLED                     (Rcc_HseStatus_t)0
-#define RCC_HSE_ENABLED                      (Rcc_HseStatus_t)1
-
-/*************************************
- *           HSE Bypass Macro       *
- ************************************/
-typedef uint32 Rcc_HseBypassEnable_t;
-#define RCC_HSE_NO_BYPASS                      (Rcc_HseBypassEnable_t)0
-#define RCC_HSE_BYPASS                         (Rcc_HseBypassEnable_t)1
-
-/************************************
- *           CSS Status Macro       *
- ***********************************/
-typedef uint32 Rcc_CssStatus_t;
-#define RCC_CSS_DISABLED                       (Rcc_CssStatus_t)0
-#define RCC_CSS_ENABLED                        (Rcc_CssStatus_t)1
-
-/************************************
- *           PLL Status Macro       *
- ***********************************/
-typedef uint32 Rcc_PllStatus_t;
-#define RCC_PLL_DISABLED                       (Rcc_PllStatus_t)0
-#define RCC_PLL_ENABLED                        (Rcc_PllStatus_t)1
-
-/************************************
- *           PLL Source Macro       *
- ***********************************/
-typedef uint32 Rcc_PllSource_t;
-#define Rcc_PLL_SOURCE_HSI_DIVIDED_2           (Rcc_PllSource_t)0
-#define Rcc_PLL_SOURCE_HSE                     (Rcc_PllSource_t)1
-
-/************************************
- *      PLL HSE Divider Macro       *
- ***********************************/
-/*if HSE is not enabled then choose the default option (0)*/
-typedef uint32 Rcc_PllHseDividerSel_t;
-#define Rcc_PLL_HSE_NOT_DIVIDED_2              (Rcc_PllHseDividerSel_t)0
-#define Rcc_PLL_HSE_DIVIDED_2                  (Rcc_PllHseDividerSel_t)1
-
-/************************************
- *      PLL Mul Factor Macro        *
- ***********************************/
-/*caution:max freq out of pll is 72 MHZ*/
-typedef uint32 Rcc_PllMulFactor_t;
-#define RCC_PLL_MUL_FACTOR_2                   (Rcc_PllMulFactor_t)0
-#define RCC_PLL_MUL_FACTOR_3                   (Rcc_PllMulFactor_t)1
-#define RCC_PLL_MUL_FACTOR_4                   (Rcc_PllMulFactor_t)2
-#define RCC_PLL_MUL_FACTOR_5                   (Rcc_PllMulFactor_t)3
-#define RCC_PLL_MUL_FACTOR_6                   (Rcc_PllMulFactor_t)4
-#define RCC_PLL_MUL_FACTOR_7                   (Rcc_PllMulFactor_t)5
-#define RCC_PLL_MUL_FACTOR_8                   (Rcc_PllMulFactor_t)6
-#define RCC_PLL_MUL_FACTOR_9                   (Rcc_PllMulFactor_t)7
-#define RCC_PLL_MUL_FACTOR_10                  (Rcc_PllMulFactor_t)8
-#define RCC_PLL_MUL_FACTOR_11                  (Rcc_PllMulFactor_t)9
-#define RCC_PLL_MUL_FACTOR_12                  (Rcc_PllMulFactor_t)10
-#define RCC_PLL_MUL_FACTOR_13                  (Rcc_PllMulFactor_t)11
-#define RCC_PLL_MUL_FACTOR_14                  (Rcc_PllMulFactor_t)12
-#define RCC_PLL_MUL_FACTOR_15                  (Rcc_PllMulFactor_t)13
-#define RCC_PLL_MUL_FACTOR_16                  (Rcc_PllMulFactor_t)14
-
-
-/************************************
- *          MCO Status Macro        *
- ***********************************/
-/*caution Max output freq is 50 MHZ*/
-typedef uint32 Rcc_McoStatus_t;
-#define RCC_MCO_DIABLED                        (Rcc_McoStatus_t)0
-#define RCC_MCO_SYSCLK                         (Rcc_McoStatus_t)4
-#define RCC_MCO_HSI                            (Rcc_McoStatus_t)5
-#define RCC_MCO_HSE                            (Rcc_McoStatus_t)6
-#define RCC_MCO_PLL_DIVIDED_2                  (Rcc_McoStatus_t)7
-
-/************************************
- *         USB Prescaler Macro      *
- ***********************************/
-/*usb need 48 MHZ from the pll so it must configure with this freq*/
-/*put the defalut value if usb is not used (0)*/
-typedef uint32 Rcc_UsbPrescaler_t;
-#define RCC_USB_PLL_DIVIDED_1_5                (Rcc_UsbPrescaler_t)0
-#define RCC_USB_PLL                            (Rcc_UsbPrescaler_t)1
-
-/************************************
- *         ADC Prescaler Macro      *
- ***********************************/
-typedef uint32 Rcc_AdcPrescaler_t;
-#define RCC_ADC_PCLK2_DIVIDED_2                (Rcc_AdcPrescaler_t)0
-#define RCC_ADC_PCLK2_DIVIDED_4                (Rcc_AdcPrescaler_t)1
-#define RCC_ADC_PCLK2_DIVIDED_6                (Rcc_AdcPrescaler_t)2
-#define RCC_ADC_PCLK2_DIVIDED_8                (Rcc_AdcPrescaler_t)3
-
-/************************************
- *        APB2 Prescaler Macro      *
- ***********************************/
-typedef uint32 Rcc_Abp2Prescaler_t;
-#define RCC_APB2_HCLK                          (Rcc_Abp2Prescaler_t)0
-#define RCC_APB2_HCLK_DIVIDED_2                (Rcc_Abp2Prescaler_t)4
-#define RCC_APB2_HCLK_DIVIDED_4                (Rcc_Abp2Prescaler_t)5
-#define RCC_APB2_HCLK_DIVIDED_8                (Rcc_Abp2Prescaler_t)6
-#define RCC_APB2_HCLK_DIVIDED_16               (Rcc_Abp2Prescaler_t)7
-
-
-/************************************
- *        APB1 Prescaler Macro      *
- ***********************************/
-/*caution Max freq is 36MHZ*/
-typedef uint32 Rcc_Abp1Prescaler_t;
-#define RCC_APB1_HCLK                          (Rcc_Abp1Prescaler_t)0
-#define RCC_APB1_HCLK_DIVIDED_2                (Rcc_Abp1Prescaler_t)4
-#define RCC_APB1_HCLK_DIVIDED_4                (Rcc_Abp1Prescaler_t)5
-#define RCC_APB1_HCLK_DIVIDED_8                (Rcc_Abp1Prescaler_t)6
-#define RCC_APB1_HCLK_DIVIDED_16               (Rcc_Abp1Prescaler_t)7
-
-/************************************
- *        AHB Prescaler Macro      *
- ***********************************/
-typedef uint32 Rcc_AhbPrescaler_t;
-#define RCC_AHB_SYSCLK                          (Rcc_AhbPrescaler_t)0
-#define RCC_AHB_SYSCLK_DIVIDED_2                (Rcc_AhbPrescaler_t)8
-#define RCC_AHB_SYSCLK_DIVIDED_4                (Rcc_AhbPrescaler_t)9
-#define RCC_AHB_SYSCLK_DIVIDED_8                (Rcc_AhbPrescaler_t)10
-#define RCC_AHB_SYSCLK_DIVIDED_16               (Rcc_AhbPrescaler_t)11
-#define RCC_AHB_SYSCLK_DIVIDED_64               (Rcc_AhbPrescaler_t)12
-#define RCC_AHB_SYSCLK_DIVIDED_128              (Rcc_AhbPrescaler_t)13
-#define RCC_AHB_SYSCLK_DIVIDED_256              (Rcc_AhbPrescaler_t)14
-#define RCC_AHB_SYSCLK_DIVIDED_512              (Rcc_AhbPrescaler_t)15
-
-/************************************
- *        SYSCLK Select Macro       *
- ***********************************/
-typedef uint8 Rcc_SysClkSelect_t;
-#define RCC_SYSCLK_HSI                          (Rcc_SysClkSelect_t)0
-#define RCC_SYSCLK_HSE                          (Rcc_SysClkSelect_t)1
-#define RCC_SYSCLK_PLL                          (Rcc_SysClkSelect_t)2
-
 /***********************************************
  *        peripheral enable/reset Macros       *
  ***********************************************/
@@ -239,30 +82,6 @@ typedef uint8 Rcc_PeripheralSel_t;
 #define RCC_DMA2EN                               (Rcc_PeripheralSel_t)1
 #define RCC_DMA1EN                               (Rcc_PeripheralSel_t)0
 
-
-/****************************************
- *           LSI Selection Macro        *
- ***************************************/
-/*LSI is off by default*/
-typedef uint32 Rcc_LsiStatus_t;
-#define RCC_LSI_DISABLED                          (Rcc_LsiStatus_t)0
-#define RCC_LSI_ENABLED                           (Rcc_LsiStatus_t)1
-
-/****************************************
- *           LSE Selection Macro        *
- ***************************************/
-/*LSI is off by default*/
-typedef uint32 Rcc_LseStatus_t;
-#define RCC_LSE_DISABLED                          (Rcc_LseStatus_t)0
-#define RCC_LSE_ENABLED                           (Rcc_LseStatus_t)1
-
-/*************************************
- *           LSE Bypass Macro        *
- ************************************/
-typedef uint32 Rcc_LseBypassEnable_t;
-#define RCC_LSE_NO_BYPASS                         (Rcc_LseBypassEnable_t)0
-#define RCC_LSE_BYPASS                            (Rcc_LseBypassEnable_t)1
-/***********************************************************************************/
 
 
 /************************************************************************

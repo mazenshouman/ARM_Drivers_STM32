@@ -10,7 +10,6 @@
  ************************************************************************/
 #include "Std_types.h"
 #include "Bit_Math.h"
-#include "Dio_Lcfg.h"
 #include "Dio.h"
 #include "SysTick.h"
 #include "LedMatrix_Wrapper.h"
@@ -21,7 +20,7 @@
 /************************************************************************
  *                           Macros&Types                               *
  ************************************************************************/
-#define LEDMATRIX_ONE_CHARACTER                                            1
+#define LEDMATRIX_ONE_CHARACTER                                         1
 #define LEDMATRIX_NUMBER_OF_UNUSED_CHAR                                 32
 /************************************************************************
  *                           Gloabal Variables                          *
